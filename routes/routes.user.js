@@ -68,18 +68,21 @@ router.post(
   async (req, res) => {
     let success = false;
     const { email, password } = req.body;
+    console.log("email: ", email, "password: ", password);
 
     try {
-      let user = await User.findOne({ email });
+      let user = await User.find({ email });
+      console.log("user: ", user);
       // console.log({ user });
-      if (!user) {
+      if (!user || user.length === 0) {
         success = false;
         return res
           .status(400)
           .json({ success, error: "Please login with correct credentials" });
       }
 
-      const passwordCompare = await bcrypt.compare(password, user.password);
+      const passwordCompare = await bcrypt.compare(password, user[0].password);
+
       if (!passwordCompare) {
         success = false;
         return res
@@ -88,9 +91,10 @@ router.post(
       }
       const data = {
         user: {
-          id: user.id,
+          id: user[0]._id,
         },
       };
+      console.log("data: ", data);
 
       console.log("login");
 
@@ -104,8 +108,7 @@ router.post(
       res.json({ success, authtoken });
       // }
     } catch (error) {
-      console.error(error.message);
-      res.status(500).send("Internal error occurred", error.message);
+      res.status(500).send("Internal error occurred");
     }
   }
 );
