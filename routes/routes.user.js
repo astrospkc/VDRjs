@@ -105,7 +105,7 @@ router.post(
       // console.log("req.headers: ", req.headers);
       console.log(success, authtoken);
 
-      res.json({ success, authtoken });
+      res.json({ success, authtoken, user });
       // }
     } catch (error) {
       res.status(500).send("Internal error occurred");

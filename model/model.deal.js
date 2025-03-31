@@ -22,26 +22,26 @@ const DealSchema = new mongoose.Schema(
     buyer: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "user",
-      required: true,
+      //   required: true,
     },
     seller: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "user",
       required: true,
     },
-    negotiations: [
-      {
-        price: Number,
-        offered_by: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "user",
-        },
-        timestamp: {
-          type: Date,
-          default: Date.now,
-        },
-      },
-    ],
+    // negotiations: [
+    //   {
+    //     price: Number,
+    //     offered_by: {
+    //       type: mongoose.Schema.Types.ObjectId,
+    //       ref: "user",
+    //     },
+    //     timestamp: {
+    //       type: Date,
+    //       default: Date.now,
+    //     },
+    //   },
+    // ],
   },
   {
     timestamps: true,
