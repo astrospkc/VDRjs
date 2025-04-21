@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const ChatSchema = new mongoose.Schema(
   {
+    // chatName
     deal: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "deal",
@@ -18,14 +19,10 @@ const ChatSchema = new mongoose.Schema(
       required: true,
     },
     message: {
-      type: String,
-      required: true,
+      type: mongoose.Schema.Types.String,
+      ref: "message",
     },
     isRead: {
-      type: Boolean,
-      default: false,
-    },
-    typingIndicator: {
       type: Boolean,
       default: false,
     },
